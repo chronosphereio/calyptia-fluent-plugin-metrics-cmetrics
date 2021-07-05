@@ -1,8 +1,8 @@
-# Fluent::Plugin::Metrics::Cmetrics
+# Fluent::Plugin::CMetricsMetrics
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fluent/plugin/metrics/cmetrics`. To experiment with that code, run `bin/console` for an interactive prompt.
+[![Testing on Ubuntu](https://github.com/calyptia/fluent-plugin-metrics-cmetrics/actions/workflows/ubuntu-test.yml/badge.svg?branch=main)](https://github.com/calyptia/fluent-plugin-metrics-cmetrics/actions/workflows/ubuntu-test.yml)
 
-TODO: Delete this and the text above, and describe your gem
+A Fluentd plugin which uses [cmetrics](https://github.com/calyptia/cmetrics) context to collect Fluentd metrics.
 
 ## Installation
 
@@ -32,4 +32,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/fluent-plugin-metrics-cmetrics.
+Bug reports and pull requests are welcome on GitHub at https://github.com/calyptia/fluent-plugin-metrics-cmetrics.
