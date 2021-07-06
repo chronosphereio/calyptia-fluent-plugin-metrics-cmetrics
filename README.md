@@ -1,6 +1,8 @@
 # Fluent::Plugin::CMetricsMetrics
 
 [![Testing on Ubuntu](https://github.com/calyptia/fluent-plugin-metrics-cmetrics/actions/workflows/ubuntu-test.yml/badge.svg?branch=main)](https://github.com/calyptia/fluent-plugin-metrics-cmetrics/actions/workflows/ubuntu-test.yml)
+[![Testing on macOS](https://github.com/calyptia/fluent-plugin-metrics-cmetrics/actions/workflows/macos-test.yml/badge.svg?branch=main)](https://github.com/calyptia/fluent-plugin-metrics-cmetrics/actions/workflows/macos-test.yml)
+[![Testing on Windows](https://github.com/calyptia/fluent-plugin-metrics-cmetrics/actions/workflows/windows-test.yml/badge.svg?branch=main)](https://github.com/calyptia/fluent-plugin-metrics-cmetrics/actions/workflows/windows-test.yml)
 
 A Fluentd plugin which uses [cmetrics](https://github.com/calyptia/cmetrics) context to collect Fluentd metrics.
 
