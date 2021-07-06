@@ -1,0 +1,33 @@
+name: Testing on Windows
+
+on: [push,pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental }}
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version: ['3.0', '2.7', '2.6']
+        os: [windows-latest]
+        experimental: [false]
+        include:
+          - ruby-version: head
+            os: windows-latest
+            experimental: true
+
+    name: Unit testing with Ruby ${{ matrix.ruby-version }} on ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+      - name: Set up Gemfile.local to use developing metrics plugin mechanism
+        run: |
+          echo 'gem "fluentd", github: "cosmo0920/fluentd", branch: "implement-metrics-plugin"' > Gemfile.local
+      - name: Run bundle install
+        run: ridk exec bundle install
+      - name: Run the default task
+        run: ridk exec bundle exec rake
