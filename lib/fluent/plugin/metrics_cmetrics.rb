@@ -73,27 +73,27 @@ module Fluent
         true
       end
 
-      def get(_key)
+      def get
         @cmetrics.val(@labels_values)
       end
 
-      def inc(_key)
+      def inc
         @cmetrics.inc(@labels_values)
       end
 
-      def dec_gauge(_key)
+      def dec_gauge
         @cmetrics.dec(@labels_values)
       end
 
-      def add(_key, value)
+      def add(value)
         @cmetrics.add(value, @labels_values)
       end
 
-      def sub_gauge(_key, value)
+      def sub_gauge(value)
         @cmetrics.sub(value, @labels_values)
       end
 
-      def set(_key, value)
+      def set(value)
         @cmetrics.set(value, @labels_values)
       end
     end
