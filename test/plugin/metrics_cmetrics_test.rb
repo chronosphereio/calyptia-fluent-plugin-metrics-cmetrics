@@ -47,6 +47,20 @@ class Fluent::Plugin::CMetricsMetricsTest < Test::Unit::TestCase
       assert_false m.has_methods_for_counter
       assert_true m.has_methods_for_gauge
     end
+
+    test "should replace subsystem name with storage" do
+      m = Fluent::Plugin::CMetricsMetrics.new
+      m.configure(config_element('metrics', '', {"labels" => {test: "rspec", middleware: "Fluentd"}, "enable_calyptia_metrics_mapping" => true}))
+      m.create(namespace: "Fluentd", subsystem: "buffer", name: "subsystem replacement test", help_text: "CMtrics metrics plugin subsystem replacement tesing")
+      assert_equal "storage", m._subsystem
+    end
+
+    test "shouldn't replace subsystem name with storage" do
+      m = Fluent::Plugin::CMetricsMetrics.new
+      m.configure(config_element('metrics', '', {"labels" => {test: "rspec", middleware: "Fluentd"}, "enable_calyptia_metrics_mapping" => true}))
+      m.create(namespace: "Fluentd", subsystem: "notbuffer", name: "subsystem replacement test", help_text: "CMtrics metrics plugin subsystem replacement tesing")
+      assert_equal "notbuffer", m._subsystem
+    end
   end
 
   sub_test_case "Metrics" do

@@ -23,13 +23,16 @@ module Fluent
     class CMetricsMetrics < Metrics
       Fluent::Plugin.register_metrics('cmetrics', self)
 
-      attr_reader :cmetrics
+      attr_reader :cmetrics, :_subsystem # _subsystem for testing.
+
+      config_param :enable_calyptia_metrics_mapping, :bool, default: true
 
       def initialize
         super
         @cmetrics = nil
         @default_labels_keys = []
         @default_labels_values = []
+        @_subsystem = nil
       end
 
       def configure(conf)
@@ -60,6 +63,9 @@ module Fluent
       end
 
       def create(namespace:, subsystem:, name:, help_text:, labels: {})
+        if @enable_calyptia_metrics_mapping
+          subsystem = calyptia_metrics_subsystem_mapper(subsystem)
+        end
         @cmetrics.create(namespace, subsystem, name, help_text, @labels_keys)
         # Add specified in #create label(s) as static label(s).
         unless labels.empty?
@@ -67,6 +73,16 @@ module Fluent
             @cmetrics.add_label(k, v)
           end
         end
+      end
+
+      def calyptia_metrics_subsystem_mapper(subsystem)
+        case subsystem.to_s
+        when "buffer"
+          # Calyptia's service should handle buffer metrics as storage.
+          subsystem = "storage"
+        end
+        @_subsystem = subsystem
+        subsystem
       end
 
       def multi_workers_ready?
