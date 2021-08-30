@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency("cmetrics", ["~> 0.1.9"])
-  spec.add_runtime_dependency("fluentd", [">= 0.13.0", "< 2"])
+  spec.add_runtime_dependency("fluentd", [">= 0.14.0", "< 2"])
 
   spec.add_development_dependency("rake", ["~> 13.0"])
   spec.add_development_dependency("test-unit", ["~> 3.4"])
